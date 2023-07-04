@@ -1,0 +1,17 @@
+.formClass {
+  border: 1px solid black;
+  padding: 10px;
+  width: 200px;
+}
+
+.warning {
+  border: solid red 1px;
+  border-radius: 0.2em;
+  color: red;
+}
+
+.danger {
+  font-size: 10px;
+  color: red;
+  margin-left: 10em;
+}

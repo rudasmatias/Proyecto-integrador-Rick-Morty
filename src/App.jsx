@@ -1,12 +1,32 @@
-import "./App.css";
-import Cards from "./components/Cards.jsx";
-import Nav from "./components/Nav";
+import React, { useEffect } from "react";
 import { useState } from "react";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Routes, Route } from "react-router-dom";
+
+import Nav from "./components/Nav/Nav";
+import Detail from "./pages/Detail/Detail";
+import About from "./pages/About/About";
+import Home from "./pages/Home/Home";
+import Form from "./components/Form/Form";
 
 function App() {
   const [characters, setCharacters] = useState([]);
+  const { pathname } = useLocation(); // {,,}
+  const [access, setAccess] = useState(false);
+  const navigate = useNavigate();
+  const EMAIL = "ronaldmatiasrudas@gmail.com";
+  const PASSWORD = "hola1234";
+
+  const login = (userData) => {
+    if (userData.password === PASSWORD && userData.email === EMAIL) {
+      setAccess(true);
+      navigate("/home");
+    }
+  };
+
+  useEffect(() => {
+    !access && navigate("/");
+  }, [access]);
 
   function onSearch(id) {
     axios
@@ -26,10 +46,24 @@ function App() {
     );
   };
 
+  const reset = (event) => {
+    setCharacters([]);
+  };
+
   return (
     <div className="App">
-      <Nav onSearch={onSearch} />
-      <Cards characters={characters} onClose={onClose} />
+      {pathname !== "/" && <Nav onSearch={onSearch} />}
+      <Routes>
+        <Route path="/" element={<Form login={login} />} />
+        <Route
+          path="/home"
+          element={
+            <Home characters={characters} onClose={onClose} reset={reset} />
+          }
+        />
+        <Route path="/about" element={<About />} />
+        <Route path="/detail/:id" element={<Detail />} />
+      </Routes>
     </div>
   );
 }

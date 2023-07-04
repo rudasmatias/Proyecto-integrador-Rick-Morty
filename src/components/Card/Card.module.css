@@ -1,0 +1,7 @@
+.cardClass {
+  margin: 10px;
+  border-radius: 10px;
+  border: 1px solid red;
+  width: fit-content;
+  height: fit-content;
+}
