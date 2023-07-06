@@ -8,9 +8,11 @@ import Detail from "./pages/Detail/Detail";
 import About from "./pages/About/About";
 import Home from "./pages/Home/Home";
 import Form from "./components/Form/Form";
+import Favorites from "./components/Favorites/Favorites";
 
 function App() {
   const [characters, setCharacters] = useState([]);
+  const [charId, setCharId] = useState([]);
   const { pathname } = useLocation(); // {,,}
   const [access, setAccess] = useState(false);
   const navigate = useNavigate();
@@ -29,11 +31,15 @@ function App() {
   }, [access]);
 
   function onSearch(id) {
+    if (charId.includes(parseInt(id))) {
+      return window.alert("Ya Existe!");
+    }
     axios
       .get(`https://rickandmortyapi.com/api/character/${id}`)
       .then(({ data }) => {
         if (data.name) {
           setCharacters((oldChars) => [...oldChars, data]);
+          setCharId([...charId, data.id]);
         } else {
           window.alert("¡No hay personajes con este ID!");
         }
@@ -63,6 +69,7 @@ function App() {
         />
         <Route path="/about" element={<About />} />
         <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/favorites" element={<Favorites />} />
       </Routes>
     </div>
   );
