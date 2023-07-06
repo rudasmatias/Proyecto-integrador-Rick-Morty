@@ -50,6 +50,7 @@ function App() {
     setCharacters(
       characters.filter((personajes) => personajes.id !== parseInt(id))
     );
+    setCharId(charId.filter((id) => id !== parseInt(id)));
   };
 
   const reset = (event) => {
