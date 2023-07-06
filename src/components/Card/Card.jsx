@@ -25,7 +25,7 @@ function Card({
       removeFav(id);
     } else {
       setIsFav(true);
-      addFav({ id, name, image });
+      addFav({ id, name, image, gender });
     }
   };
 
