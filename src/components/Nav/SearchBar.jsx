@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { styleSearchBar } from "./SearchBar.module.css";
+
 export default function SearchBar({ onSearch }) {
   const [id, setId] = useState("");
 
@@ -7,7 +9,7 @@ export default function SearchBar({ onSearch }) {
   };
 
   return (
-    <div>
+    <div className={styleSearchBar}>
       <input
         type="text"
         placeholder="Busca un personaje"

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { backgroundImage } from "./App.module.css";
 
 import Nav from "./components/Nav/Nav";
 import Detail from "./pages/Detail/Detail";
@@ -53,20 +54,14 @@ function App() {
     setCharId(charId.filter((id) => id !== parseInt(id)));
   };
 
-  const reset = (event) => {
-    setCharacters([]);
-  };
-
   return (
-    <div className="App">
+    <div className={backgroundImage}>
       {pathname !== "/" && <Nav onSearch={onSearch} />}
       <Routes>
         <Route path="/" element={<Form login={login} />} />
         <Route
           path="/home"
-          element={
-            <Home characters={characters} onClose={onClose} reset={reset} />
-          }
+          element={<Home characters={characters} onClose={onClose} />}
         />
         <Route path="/about" element={<About />} />
         <Route path="/detail/:id" element={<Detail />} />

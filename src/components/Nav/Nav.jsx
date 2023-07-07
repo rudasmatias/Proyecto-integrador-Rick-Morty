@@ -1,19 +1,25 @@
 import React from "react";
 import SearchBar from "./SearchBar";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { ulStyle, navContainer } from "./Nav.module.css";
 
 export default function Nav({ onSearch }) {
   return (
-    <div>
-      <Link to="/home">
-        <button>Home</button>
-      </Link>
-      <Link to="/about">
-        <button>About</button>
-      </Link>
-      <Link to="/favorites">
-        <button>Favorites</button>
-      </Link>
+    <div className={navContainer}>
+      <ul className={ulStyle}>
+        <NavLink to="/home">
+          <li> Home </li>
+        </NavLink>
+
+        <NavLink to="/about">
+          <li> About </li>
+        </NavLink>
+
+        <NavLink to="/favorites">
+          <li> Favorites </li>
+        </NavLink>
+      </ul>
+
       <SearchBar onSearch={onSearch} />
     </div>
   );
