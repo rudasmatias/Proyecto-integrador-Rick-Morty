@@ -40,7 +40,7 @@ function App() {
 
   async function onSearch(id) {
     try {
-      if (charId.includes(parseInt(id))) {
+      if (charId.includes(id)) {
         return window.alert("Ya Existe!");
       }
       const url = `http://localhost:3001/rickandmorty/character/${id}`;
@@ -58,9 +58,9 @@ function App() {
 
   const onClose = (id) => {
     setCharacters(
-      characters.filter((personajes) => personajes.id !== parseInt(id))
+      characters.filter((personajes) => Number(personajes.id) !== parseInt(id))
     );
-    setCharId(charId.filter((id) => id !== parseInt(id)));
+    setCharId(charId.filter((id) => id !== id));
   };
 
   return (
